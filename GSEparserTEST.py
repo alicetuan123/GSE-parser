@@ -28,7 +28,7 @@ DIE_value =[]
 URL_value=[]
 
 probe_num=0
-probe_num2=0
+probe_num_2=0
 probe_mat = []
 probe_mat_stage=[]
 
@@ -112,6 +112,9 @@ for i in range(len(NCX_index)):
    # print(test2)
     #print(type(test2))
 
+#print(len(test2))  746
+#print (len(NCX_index)) 746
+
 with open("2000SubGSE") as GSE_f:
     for Gline in GSE_f:
         if not Gline.startswith("!"):
@@ -124,17 +127,21 @@ with open("2000SubGSE") as GSE_f:
 
             if len(temp1) == 1340:
                 probe_mat.append([])
+                probe_mat_stage.append([])
 
           # probe matrix_ NCX part
                 for i in range(len(NCX_index)):
                     # print(temp[NCX_index[i]+1])
-                    probe_mat[probe_num].append(temp1[NCX_index[i] ])
+                    probe_mat[probe_num].append(temp1[NCX_index[i]])
                 probe_num += 1
                # print(probe_num)
-                for i in range(len(test2)):
-                    probe_mat_stage[probe_num_2].append(temp1[test2[i]])
+                for j in range(len(test2)):
+                     probe_mat_stage[probe_num_2].append(temp1[test2[j]])
                 probe_num_2 += 1
-# print(probe_mat)
+#print(probe_mat_stage)
+
+#0615  check if the value contains NA or NUll?
+
 #########sort by time
 #time 0f NCX, same index
 
@@ -171,17 +178,18 @@ import matplotlib.pyplot
 import numpy
 ######plot
 #
-# intensity= numpy.array(probe_mat[1:][:])
-# print (intensity)
+#intensity= numpy.array(probe_mat[1:][:])
+intensity= numpy.array(probe_mat_stage[1:][:])
+print (intensity)
 # print("\n")
 # intensity=numpy.sort(intensity, axis=None)
 # print (intensity)
 #
 # # plot the data in to pcolormesh
-# matplotlib.pyplot.pcolormesh(intensity)
+matplotlib.pyplot.pcolormesh(intensity)
 # #colorbar to show intensity scale
-# matplotlib.pyplot.colorbar()
-# matplotlib.pyplot.show()
+matplotlib.pyplot.colorbar()
+matplotlib.pyplot.show()
 
 # nba_norm = (nba - nba.mean()) / (nba.max() - nba.min())
 # # Sort data according to Points, lowest to highest
